@@ -8,9 +8,9 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.AverageTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 @State(Scope.Thread)
-@Fork(3)
-@Warmup(iterations = 5)
-@Measurement(iterations = 10)
+@Fork(1)
+@Warmup(iterations = 3)
+@Measurement(iterations = 5)
 public class ReflectionBenchmark {
 
     private SampleClass sampleObject;
@@ -23,18 +23,27 @@ public class ReflectionBenchmark {
     }
 
     @Benchmark
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
+    public int directCall() {
+        return sampleObject.compute(42);
+    }
+
+    @Benchmark
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
     public Object reflectionCall() throws Exception {
         return method.invoke(sampleObject, 42);
     }
 
     @Benchmark
-    public int directCall() {
-        return sampleObject.compute(42);
+    @OutputTimeUnit(TimeUnit.NANOSECONDS)
+    public Object reflectionCachedCallUnCached() throws Exception {
+        Method myMethod = SampleClass.class.getMethod("compute", int.class);
+        return myMethod.invoke(sampleObject, 42);
     }
 
     public static class SampleClass {
         public int compute(int value) {
-            return value * 2; // Sample computation
+            return value * 2;
         }
     }
 }
