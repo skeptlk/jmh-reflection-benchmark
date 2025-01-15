@@ -1,0 +1,10 @@
+META-INF/CompilerHints
+org/sample/ReflectionBenchmark.class
+org/sample/jmh_generated/ReflectionBenchmark_jmhType_B1.class
+META-INF/BenchmarkList
+org/sample/jmh_generated/ReflectionBenchmark_jmhType_B2.class
+org/sample/jmh_generated/ReflectionBenchmark_reflectionCall_jmhTest.class
+org/sample/jmh_generated/ReflectionBenchmark_jmhType_B3.class
+org/sample/jmh_generated/ReflectionBenchmark_jmhType.class
+org/sample/ReflectionBenchmark$SampleClass.class
+org/sample/jmh_generated/ReflectionBenchmark_directCall_jmhTest.class
